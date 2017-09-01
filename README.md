@@ -139,8 +139,11 @@ Checkout [columnify's dataTransform option](https://github.com/timoxley/columnif
     <details>
     <summary>Super Hint</summary>
     ![](./img/datatransformhint.png)
-    <details>
+    </details>
 </details>
+     
+     
+
 
 > **Test:** Run your tests!
 
