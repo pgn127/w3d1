@@ -83,7 +83,7 @@ Let's get started!
 ## Part 1: Parsing Command Line Arguments
 
 **Commands** are arguments that specify specific actions. You can run:
-`node myProgram.js doSomething`. `doSomething` is not a flag, since it doesn't begin with `--` - it is an argument or sub-command for the `node myProgram.js` command line tool. Consider if `myProgram.js` was a calculator application; then `node myProgram.js add` contains the command `add` and `node myProgram.js delete` contains the command `delete`. Commands given to a program are just special arguments that modify the behavior of the app/tool we are running.
+`node myProgram.js doSomething`. `doSomething` is not a flag, ]it is an argument or sub-command for the `node myProgram.js` command line tool. Consider if `myProgram.js` was a calculator application; then `node myProgram.js add` contains the command `add` and `node myProgram.js delete` contains the command `delete`. Commands given to a program are just special arguments that modify the behavior of the app/tool we are running.
 
 #### Task: Implement parseCommand()
 In order to for our application to determine which action/command to perform, you parse the specified command from the command line arguments.
@@ -99,13 +99,13 @@ The command will be the first argument: <br>
 
 
 ## Part 2: Implementing the 'display' command
-Write the function displayContacts(). It will be called in the following way:
+Write the function displayContacts(). It will be called in the following way:  
 `$ node addressBook.js display` 
 
-
-This function should output the appropriate contacts using console.log() and [columnify npm package](https://www.npmjs.com/package/columnify). <br> Contacts that do not have a phone number (for which we put -1 as the placeholder), should be displayed with '-None-' in place of their number, as follows: <br>
-NAME: ContactName PHONE NUMBER: -None-
 ### Goal
+This function should output the appropriate contacts using console.log() and [columnify npm package](https://www.npmjs.com/package/columnify).  
+Contacts that do not have a phone number (for which we put -1 as the placeholder), should be displayed with `'-None-'` in place of their number, as follows:  
+
 ![](./img/displaycontactsresult.png)
 
 ### Using columnify
@@ -123,42 +123,22 @@ NAME: ContactName PHONE NUMBER: -None-
     </details>
 1. Explore the columnify module to match your output to the 'Goal' shown above
  - **NOTE**: Simply calling columnify on our entire addressBook directly will print out our contacts exactly as they are stored in our data array. There are two key things you need to fix:
-  - Change the columns so that they read "CONTACT_NAME" and "PHONE_NUMBER"
-  ```i```:
-     <details>
-     <summary>Hint</summary>
-     [Use columnify's headingTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
-     </details>
-  - For contacts without phone numbers, display '-None-' instead of '-1'
-  ```i```:
+   - Change the columns so that they read "CONTACT_NAME" and "PHONE_NUMBER"   
+   ```i```:
       <details>
       <summary>Hint</summary>
-      Checkout [columnify's dataTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
-          <details>
-          <summary>Super Hint</summary>
-          ![](./img/datatransformhint.png)
-          </details>
+      [Use columnify's headingTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
       </details>
-
-
-
-**NOTE**: Simply calling columnify on our entire addressBook directly will print out our contacts exactly as they are stored in our data array. There are two key things you need to fix:
- - Change the columns so that they read "CONTACT_NAME" and "PHONE_NUMBER"
-<details>
-<summary>Hint</summary>
-[Use columnify's headingTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
-</details>
-
- - For contacts without phone numbers, display '-None-' instead of '-1'
-<details>
-<summary>Hint</summary>
-Checkout [columnify's dataTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
-    <details>
-    <summary>Super Hint</summary>
-    ![](./img/datatransformhint.png)
-    </details>
-</details>
-     
+   - For contacts without phone numbers, display '-None-' instead of '-1'  
+   ```i```:
+       <details>
+       <summary>Hint</summary>
+       Checkout [columnify's dataTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
+           <details>
+           <summary>Super Hint</summary>
+           ![](./img/datatransformhint.png)
+           </details>
+       </details>
      
 
 
@@ -167,7 +147,7 @@ Checkout [columnify's dataTransform option](https://github.com/timoxley/columnif
 
 ## Part 3: Implementing the 'add' command
 Write the function addContact(). It will be called in the following ways:  
-- With name and number:`$ node addressBook.js add Darwish 123`
+- With name and number:`$ node addressBook.js add Darwish 123`  
 - With name: `$ node addressBook.js add Darwish`
 
 
