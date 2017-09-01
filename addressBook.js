@@ -9,22 +9,22 @@ var data = JSON.parse(fs.readFileSync(JSON_FILE));
 
 
 
-//PART1: PARSING COMMAND LINE ARGUMENTS
-//To access what was typed into the command line, use process.argv
-// If no arguments are specified print help.
-if (process.argv.length === 2 || process.argv === "help" || process.argv === "-h") {
-  console.log("\n\tUsage: addressBook [options] [command]\n\n\n" +"\tOptions:\n" + "\t\t-h, --help   Show this help message and quit"+"\n\n\n\tCommands:\n" + "\t\tadd       Create Contact\n" + "\t\tdisplay   Display all contacts in directory\n" + "\t\tupdate    Update existing contact\n");
-}
+
+//the message that will be displayed  If no arguments are specified or if user types help
+var helpString = "\n\tUsage: addressBook [options] [command]\n\n\n" +"\tOptions:\n" + "\t\thelp   Show this help message and quit"+"\n\n\n\tCommands:\n" + "\t\tadd       Create Contact\n" + "\t\tdisplay   Display all contacts in directory\n" + "\t\tupdate    Update existing contact\n"
+
 
 var argv = process.argv
 //console.log(process.argv) //UNCOMMENT TO SEE WHAT PROCESS.ARGV IS BEFORE WE SPLICE
 argv.splice(0,2); //remove 'node' and path from args, NOTE: splicing modifies process.argv, so you will not need to do this again!
 
 
+//------------PART1: PARSING COMMAND LINE ARGUMENTS------------------------
 
-//TODO: Implement parseCommand()
 /**
-* Using process.argv, find and return the command. The command will be the first argument the user types. The possible commands are add, update, display, delete, help
+* Implement parseCommand()
+* Using process.argv, find and return the command.
+* The command will be the first argument the user types. The possible commands are add, update, display, delete, help
 * $ node addressBook.js add Moose 123   ----> 'add'
 * $ node addressBook.js                ----> ''
 * @param  {}
@@ -56,24 +56,22 @@ switch(input){
     case "display":
         displayContacts();
         break;
-    case "help":
-        break
     default:
-        console.log('No actions provided');
+        console.log(helpString); //if command = 'help' or invalid command, print help
 }
 
 
 
-//----------------- PART 2 ---------------------//
-//Implement displayContacts()
+//----------------- PART 2 'display' command---------------------//
+
 /**
-* Display the contacts in the address book in the format "Name: ContactName  Phone Number: ContactNumber"
-* If the contact does not have a phone number listed, you should display "Name: ContactName  Phone Number: -None-"
-* $ node addressBook.js display   ----> Name: Ricky  Phone Number: 123
-                                        Name: Moose  Phone Number: 456
-                                        Name: Graham  Phone Number: -None-
-* @param  {}
-* @return {[string]}     Return the command or "" if there was no command.
+*
+* Implement displayContacts()
+* Display the contacts in the address book in the format specified in the readme (HERE IS WHERE WE USE COLUMNIFY NPM MODULE)
+* If the contact does not have a phone number listed, you should display "-None-" in the PHONE_NUMBER fIELD
+*
+* Do not return anything, console.log() the contacts
+*
 */
 function displayContacts(){
     //YOUR CODE HERE
@@ -84,27 +82,36 @@ function displayContacts(){
 
 
 
-//----------------- PART 3 ---------------------//
-//TODO: Write a function to create a new contact
-// Example: This is a function that is called to create a new contact.
-// Calling `node add contactName contactNumber ` must call our function addContact.
-// it should get the name and number of the Contact from process.argv
-//You should only create a new contact if a name is provided
-//if no number is provided, store -1 as their number
-function addContact() {
+//----------------- PART 3 'add' command---------------------//
+/**
+* Implement addContacts()
+* This is a function that is called to create a new contact.
+* Calling `node add contactName contactNumber ` must call our function addContact.
+* it should get the name and number of the Contact from process.argv
+* You should only create a new contact if a name is provided that doesnt already exist inside your address book (no duplicate contacts)
+* and if the name consists of only letters and the number consists of only numbers
+* name: string, number: number
+* if no number is provided, store -1 as their number
+*/
 
+function addContact() {
+// YOUR CODE HERE
 }
 
 
-//----------------- PART 4 ---------------------//
-//TODO: Write a function to update
-// Example: This is a function that is called to create a new contact.
-// Calling `node add contactName contactNumber ` must call our function addContact.
-// it should get the name and number of the Contact from process.argv
-//You should only create a new contact if a name is provided
-//if no number is provided, store -1 as their number
-function updateContact(){
+//----------------- PART 4 'update' command---------------------//
+/**
+* Implement updateContact()
+* This is a function that is called to update an existing contact.
+* Calling `node addressBook.js update contactName newContactNumber ` updates the number of contact with name contactName to be newContactNumber.
+* Calling `node addressBook.js update contactName newContactName ` updates the name of contact with name contactName to be newContactName.
+* it should get the name and update field of the Contact from process.argv
+* You should only update a contact if it exists inside your address book and the new name or number is valid
+*
+*/
 
+function updateContact(){
+// YOUR CODE HERE
 }
 
 
