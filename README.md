@@ -9,18 +9,16 @@ The goal of this exercise is to build a command line Address Book manager
 
 Many things you can do with a graphical user interface can be done through a text-only interface in the command line. Since NodeJS frees up JavaScript to run outside the browser, you can now create JavaScript applications that run from your terminal!
 
-In this exercise we will build a command line tool in JavaScript and use NodeJS to run it. Similar to other command line tools we have been using (think git or npm), we can change the behavior of our application by passing in arguments or flags (`npm install` compared to `npm install --save`). In the `npm install --save` we call `install` an argument to the npm command and `--save` a flag. Notice how the save flag changes the behavior of the `npm install` command. We will use flags and arguments to specify behavior in our application as well.
+In this exercise we will build a command line tool in JavaScript and use NodeJS to run it. Similar to other command line tools we have been using (think git or npm), we can change the behavior of our application by passing in arguments or flags (`npm install` compared to `npm install --save`). In the `npm install --save` we call `install` an argument to the npm command and `--save` a flag. Notice how the save flag changes the behavior of the `npm install` command. We will use flags and arguments to specify behavior in our application as well.  
 
 ### Commands
 
 **Commands** are arguments that specify specific actions. You can run:
-`node myProgram.js doSomething`. `doSomething` is not a flag, it is an argument or sub-command for the `node myProgram.js` command line tool. Consider if `myProgram.js` was a calculator application; then `node myProgram.js add` contains the command `add` and `node myProgram.js delete` contains the command `delete`. Commands given to a program are just special arguments that modify the behavior of the app/tool we are running.
+`node myProgram.js doSomething`. `doSomething` is an argument or sub-command for the `node myProgram.js` command line tool. Consider if `myProgram.js` was a calculator application; then `node myProgram.js add` contains the command `add` and `node myProgram.js delete` contains the command `delete`. Commands given to a program are just special arguments that modify the behavior of the app/tool we are running.  
 ### Arguments
 
 **Arguments** We can pass strings or numbers into our program to be used as arguments or parameters.
 `node myProgram.js square 4` contains the arguments `square` and `4` but we think of `square` as a command and `4` as the argument or parameter for that specific command.
-
-Flags, commands, and parameters are all specific kind of arguments. A flag is usually setting a Boolean and starts with a `-` , a command usually follows the main program and modifies or specifies the specific behavior (`square` and `add` in the calculator example above), and a parameter is usually what the command is taking in as its input.
 
 
 
@@ -82,10 +80,9 @@ Let's get started!
 
 ## Part 1: Parsing Command Line Arguments
 
-**Commands** are arguments that specify specific actions. You can run:
-`node myProgram.js doSomething`. `doSomething` is not a flag, ]it is an argument or sub-command for the `node myProgram.js` command line tool. Consider if `myProgram.js` was a calculator application; then `node myProgram.js add` contains the command `add` and `node myProgram.js delete` contains the command `delete`. Commands given to a program are just special arguments that modify the behavior of the app/tool we are running.
+**Commands** are arguments that specify specific actions. 
 
-#### Task: Implement parseCommand()
+#### Implement parseCommand()
 In order to for our application to determine which action/command to perform, you parse the specified command from the command line arguments.
 This function should parse the command argument from the command line using `process.argv` and return it.
 
@@ -123,12 +120,12 @@ Contacts that do not have a phone number (for which we put -1 as the placeholder
     </details>
 1. Explore the columnify module to match your output to the 'Goal' shown above.  
 **NOTE**: Simply calling columnify on our entire addressBook directly will print out our contacts exactly as they are stored in our data array. There are two key things you need to fix:  
-              1. Change the columns so that they read "CONTACT_NAME" and "PHONE_NUMBER"
+    1. Change the columns so that they read "CONTACT_NAME" and "PHONE_NUMBER"
               <details>
               <summary>Hint</summary>
               [Use columnify's headingTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
               </details>
-              2. For contacts without phone numbers, display '-None-' instead of '-1'
+    1. For contacts without phone numbers, display '-None-' instead of '-1'
               <details>
               <summary>Hint</summary>
               Checkout [columnify's dataTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
@@ -140,7 +137,36 @@ Contacts that do not have a phone number (for which we put -1 as the placeholder
      
 
 
-> **Test:** Run your tests!  
+##### Steps
+1. `npm install --save columnify`
+1. At the top of addressBook.js `var columnify = require('columnify')`
+1. Inside displayContacts(), uncomment the line labeled 'UNCOMMENT'<br>
+ <img src="./img/columnoutput.png" width="350"><br>
+ then run `$ node addressBook.js display` to see how columnify works!
+    <details>
+    <summary>Show Result</summary>
+    <img src="./img/terminalcolumns.png" width="400">
+    </details>
+1. Explore the columnify module to match your output to the 'Goal' shown above.  
+**NOTE**: Simply calling columnify on our entire addressBook directly will print out our contacts exactly as they are stored in our data array. There are two key things you need to fix:  
+    - [ ] Change the columns so that they read "CONTACT_NAME" and "PHONE_NUMBER"
+              <details>
+              <summary>Hint</summary>
+              [Use columnify's headingTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
+              </details>
+    - [ ] For contacts without phone numbers, display '-None-' instead of '-1'
+              <details>
+              <summary>Hint</summary>
+              Checkout [columnify's dataTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
+                  <details>
+                  <summary>Super Hint</summary>
+                  ![](./img/datatransformhint.png)
+                  </details>
+              </details>
+     
+
+
+> **TEST:** Run your tests with `$ npm test`!  
 
 
 ## Part 3: Implementing the 'add' command
@@ -174,7 +200,7 @@ In order to pass all the tests, you will need to validate what was passed in for
 
 **Bonus** Use the npm package [validate](https://www.npmjs.com/package/validator) to perform these checks
 
-> **test** Run your tests!
+> **TEST:** Run your tests with `$ npm test`! 
 
 ## Part 4: Implementing the 'update' command
 The update command is called to update an existing contact. You can update either a contact's name or number by running the following in your terminal:
@@ -184,7 +210,7 @@ The update command is called to update an existing contact. You can update eithe
 - If contact is successfully updated, console.log() the updated contact like this: `Darwish 123`
 - ONLY update the contact if the new name or number is valid! (Just like how you checked for validity in addContacts())
 
-> *TEST* Run your tests!
+> **TEST:** Run your tests with `$ npm test`! 
 
 
 
