@@ -34,6 +34,21 @@ Our Address Book can be accessed from within addressBook.js using our `data` var
 <img src="./img/datafile.png" width="350">
 
 
+### Features
+
+Our command line Address Book manager should support the following commands:
+- **add**
+  - `$ node addressBook.js add John 1234567` - Adds a new Contact item with name `John` and number 1234567
+- **display**
+  - `$ node addressBook.js display` - Displays all contacts in the address book
+- **update**
+  - `$ node addressBook.js update John 11111` - Finds contact named John and updates his number to 11111
+  - `$ node addressBook.js update John Johnny` - Finds contact named John and updates his name to Johnny
+- **BONUS: delete**
+    - `$ node addressBook.js delete John` - Finds contact named John and removes him from address book
+
+
+
 ### Running and testing
 
 1. Go to `week03/day1/addressbook-cli` in your terminal and install npm dependencies
@@ -50,29 +65,6 @@ tests to make sure your code works.
    ```
 
 3. Make your changes to `addressBook.js` in Atom.
-
-
-### Steps
-Sections:
-1. [Parsing Command Line Arguments](#part-1-parsing-command-line-arguments)
-1. [Implementing the 'display' command](#part-2-implementing-the-display-command)
-1. [Implementing the 'add' command](#part-3-implementing-the-add-command)
-1. [Implementing the 'update' command](#part-4-implementing-the-update-command)
-1. [BONUS: Implementing the 'delete' command](#part-5-implementing-the-delete-command)
-
-
-### Features
-
-Our command line Address Book manager should support the following commands:
-- **add**
-  - `$ node addressBook.js add John 1234567` - Adds a new Contact item with name `John` and number 1234567
-- **display**
-  - `$ node addressBook.js display` - Displays all contacts in the address book
-- **update**
-  - `$ node addressBook.js update John 11111` - Finds contact named John and updates his number to 11111
-  - `$ node addressBook.js update John Johnny` - Finds contact named John and updates his name to Johnny
-- **BONUS: delete**
-    - `$ node addressBook.js delete John` - Finds contact named John and removes him from address book
 
 
 Let's get started!  
@@ -110,7 +102,7 @@ Contacts that do not have a phone number (for which we put -1 as the placeholder
 ### Using columnify
 [Columnify](https://www.npmjs.com/package/columnify) is an npm package that formats console output from objects or arrays of objects into organized columns. We will use it to display the contacts in our address book like the image above.
 
-##### Steps
+#### Steps
 1. `npm install --save columnify`
 1. At the top of addressBook.js `var columnify = require('columnify')`
 1. Inside displayContacts(), uncomment the line labeled 'UNCOMMENT'<br>
@@ -128,35 +120,6 @@ Contacts that do not have a phone number (for which we put -1 as the placeholder
               [Use columnify's headingTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
               </details>
     1. For contacts without phone numbers, display '-None-' instead of '-1'
-              <details>
-              <summary>Hint</summary>
-              Checkout [columnify's dataTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
-                  <details>
-                  <summary>Super Hint</summary>
-                  ![](./img/datatransformhint.png)
-                  </details>
-              </details>
-     
-
-
-##### Steps
-1. `npm install --save columnify`
-1. At the top of addressBook.js `var columnify = require('columnify')`
-1. Inside displayContacts(), uncomment the line labeled 'UNCOMMENT'<br>
- <img src="./img/columnoutput.png" width="350"><br>
- then run `$ node addressBook.js display` to see how columnify works!
-    <details>
-    <summary>Show Result</summary>
-    <img src="./img/terminalcolumns.png" width="400">
-    </details>
-1. Explore the columnify module to match your output to the 'Goal' shown above.  
-**NOTE**: Simply calling columnify on our entire addressBook directly will print out our contacts exactly as they are stored in our data array. There are two key things you need to fix:  
-    - [ ] Change the columns so that they read "CONTACT_NAME" and "PHONE_NUMBER"
-              <details>
-              <summary>Hint</summary>
-              [Use columnify's headingTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
-              </details>
-    - [ ] For contacts without phone numbers, display '-None-' instead of '-1'
               <details>
               <summary>Hint</summary>
               Checkout [columnify's dataTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
@@ -191,7 +154,7 @@ In order to pass all the tests, you will need to validate what was passed in for
 - Every contact is an object with the following properties:
     1. **name**: REQUIRED a string (letters only!), first name of the contact
     2. **number**: OPTIONAL a number (numbers only!), phone number of contact
-- *Important* There can be **no** duplicate names! If the user tries to add a contact whose name already exists, console.log() '[ContactName] already in Address Book'
+- There can be **no** duplicate names! If the user tries to add a contact whose name already exists, console.log() '[ContactName] already in Address Book'
 - You should **only** create a new contact if a name is provided
     - if no number is provided, store -1 as their number instead
 - console.log() your success/failure messages:
