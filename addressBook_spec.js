@@ -2,26 +2,36 @@
 /* eslint-env jasmine */
 
 var jsonfile = require('jsonfile');
-// var app = require('./addressBook.js')
+var app = require('./addressBook.js')
 var file = 'data.json';
 var child_process = require('child_process');
 
 
-// describe("Getting Commands", function() {
-//     beforeEach(function() {
-//         // jsonfile.writeFileSync(file, []);
-//     });
-//
-//     it('Returns the command when provided in stdin', function() {
-//
-//         // var app = require('./addressBook.js')
-//         // // spyOn(app, 'parseCommand')
-//         // child_process.execSync('node addressBook.js update John 456');
-//         // var command = app.getCommand()
-//         // expect(command).toEqual('add')
-//         // expect(app.getCommand).toHaveBeenCalled()//toEqual('add')
-//     })
-// })
+describe("Getting Commands", function() {
+    beforeEach(function() {
+        // jsonfile.writeFileSync(file, []);
+    });
+
+    it('Returns the command provided in stdin', function() {
+        // var app = require('./addressBook.js')
+        // spyOn(app, 'parseCommand')
+        var stdout = runAndCleanStdout('node addressBook.js display');
+        // child_process.execSync('node addressBook.js update John 456');
+        var command = app.getCommand()
+        expect(command).toEqual('display')
+        // expect(app.getCommand).toHaveBeenCalled()//toEqual('add')
+    })
+
+    it('Returns empty string when no command provided', function() {
+        // var app = require('./addressBook.js')
+        // spyOn(app, 'parseCommand')
+        var stdout = runAndCleanStdout('node addressBook.js');
+        // child_process.execSync('node addressBook.js update John 456');
+        var command = app.getCommand()
+        expect(command).toEqual('')
+    })
+})
+
 describe("Displaying Contacts", function() {
     // beforeEach(function() {
     //   //resets data before all tests
