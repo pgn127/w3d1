@@ -32,7 +32,13 @@ argv.splice(0,2); //remove 'node' and path from args, NOTE: splicing modifies pr
 */
 function parseCommand() {
   // YOUR CODE HERE
+  var args = process.argv
 
+  if(args.length == 0){
+      return ""
+  } else{
+      return args[0]
+  }
 }
 
 //store the command and execute its corresponding function
@@ -136,5 +142,8 @@ writeFile(data);
 
 //export functions for spec
 module.exports = {
-    parseCommand: parseCommand
+    parseCommand: parseCommand,
+    addContact: addContact,
+    displayContacts: displayContacts,
+    updateContact: updateContact
 }
