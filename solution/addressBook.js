@@ -11,7 +11,6 @@ ensureFileExists();
 var data = JSON.parse(fs.readFileSync(JSON_FILE));
 
 
-
 //the message that will be displayed  If no arguments are specified or if user types help
 var helpString = "\n\tUsage: addressBook [options] [command]\n\n\n" +"\tOptions:\n" + "\t\thelp   Show this help message and quit"+"\n\n\n\tCommands:\n" + "\t\tadd       Create Contact\n" + "\t\tdisplay   Display all contacts in directory\n" + "\t\tupdate    Update existing contact\n"
 
@@ -19,6 +18,7 @@ var helpString = "\n\tUsage: addressBook [options] [command]\n\n\n" +"\tOptions:
 var argv = process.argv
 //console.log(process.argv) //UNCOMMENT TO SEE WHAT PROCESS.ARGV IS BEFORE WE SPLICE
 argv.splice(0,2); //remove 'node' and path from args, NOTE: splicing modifies process.argv, so you will not need to do this again!
+
 
 //------------PART1: PARSING COMMAND LINE ARGUMENTS------------------------
 
@@ -42,7 +42,6 @@ function parseCommand() {
   }
 }
 
-
 //store the command and execute its corresponding function
 var input = parseCommand()
 switch(input){
@@ -62,6 +61,8 @@ switch(input){
         console.log(helpString); //if command = 'help' or invalid command, print help
 }
 
+
+
 //----------------- PART 2 'display' command---------------------//
 
 /**
@@ -73,12 +74,10 @@ switch(input){
 * Do not return anything, console.log() the contacts
 *
 */
-
 function displayContacts(){
     //YOUR CODE HERE
 
     // console.log(columnify(data)); //UNCOMMENT
-
     var output = columnify(data, {
         minWidth: 20,
         dataTransform: function(contactData) {
@@ -104,6 +103,7 @@ function displayContacts(){
     })
 
     console.log(output);
+
 }
 
 
@@ -121,23 +121,23 @@ function displayContacts(){
 */
 
 function addContact() {
-  var args = process.argv.slice(1,process.argv.length)//getRemainingArgs()
-  if(args){
-      var name = args[0]
-    //   var number = "abc123"
-      var number = args[1] || "-1"
-      if(name &&  validator.isAlpha(name) && validator.isNumeric(number)){
+// YOUR CODE HERE
+var args = process.argv.slice(1,process.argv.length)
+if(args){
+    var name = args[0]
+  //   var number = "abc123"
+    var number = args[1] || "-1"
+    if(name &&  validator.isAlpha(name) && validator.isNumeric(number)){
 
-          data.push({
-            name: name,
-            number: parseInt(number)
-          });
-          console.log("Added contact named: "+ name + ", with id: " + data.length +", and number: " + number);
-      } else {
-          console.log('No contact name provided');
-      }
-  }
-
+        data.push({
+          name: name,
+          number: parseInt(number)
+        });
+        console.log("Added contact named: "+ name + ", with id: " + data.length +", and number: " + number);
+    } else {
+        console.log('No contact name provided');
+    }
+}
 }
 
 
@@ -153,25 +153,8 @@ function addContact() {
 */
 
 function updateContact(){
-    var args = process.argv.slice(1,process.argv.length)//getRemainingArgs()
-    if(args){
-        var contact = args[0]
-
-      //   var number = "abc123"
-        var number = args[1] || "-1"
-        if(name &&  validator.isAlpha(name) && validator.isNumeric(number)){
-
-            data.push({
-              name: name,
-              number: parseInt(number)
-            });
-            console.log("Added contact named: "+ name + ", with id: " + data.length +", and number: " + number);
-        } else {
-            console.log('No contact name provided');
-        }
-    }
+// YOUR CODE HERE
 }
-
 
 
 //BONUS Implement deleteContact

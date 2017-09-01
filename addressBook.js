@@ -1,6 +1,9 @@
 "use strict";
 // The node builtin filesystem library.
 var fs = require('fs');
+//require columnify here
+
+
 var JSON_FILE = 'data.json'
 // If data.json file doesn't exist, create an empty one
 ensureFileExists();
@@ -87,9 +90,9 @@ function displayContacts(){
 * name: string, number: number
 * if no number is provided, store -1 as their number
 */
-
 function addContact() {
 // YOUR CODE HERE
+
 }
 
 
@@ -103,7 +106,6 @@ function addContact() {
 * You should only update a contact if it exists inside your address book and the new name or number is valid
 *
 */
-
 function updateContact(){
 // YOUR CODE HERE
 }
@@ -111,7 +113,7 @@ function updateContact(){
 
 //BONUS Implement deleteContact
 function deleteContact(){
-    return
+    //YOUR CODE HERE
 }
 
 
