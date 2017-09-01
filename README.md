@@ -122,13 +122,41 @@ Contacts that do not have a phone number (for which we put -1 as the placeholder
     <img src="./img/terminalcolumns.png" width="400">
     </details>
 1. Explore the columnify module to match your output to the 'Goal' shown above.  
-**NOTE**: Simply calling columnify on our entire addressBook directly will print out our contacts exactly as they are stored in our data array. There are two key things you need to fix:
+**NOTE**: Simply calling columnify on our entire addressBook directly will print out our contacts exactly as they are stored in our data array. There are two key things you need to fix:  
               1. Change the columns so that they read "CONTACT_NAME" and "PHONE_NUMBER"
               <details>
               <summary>Hint</summary>
               [Use columnify's headingTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
               </details>
               2. For contacts without phone numbers, display '-None-' instead of '-1'
+              <details>
+              <summary>Hint</summary>
+              Checkout [columnify's dataTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
+                  <details>
+                  <summary>Super Hint</summary>
+                  ![](./img/datatransformhint.png)
+                  </details>
+              </details>
+     
+
+##### Steps
+1. `npm install --save columnify`
+1. At the top of addressBook.js `var columnify = require('columnify')`
+1. Inside displayContacts(), uncomment the line labeled 'UNCOMMENT'<br>
+ <img src="./img/columnoutput.png" width="350"><br>
+ then run `$ node addressBook.js display` to see how columnify works!
+    <details>
+    <summary>Show Result</summary>
+    <img src="./img/terminalcolumns.png" width="400">
+    </details>
+1. Explore the columnify module to match your output to the 'Goal' shown above.  
+**NOTE**: Simply calling columnify on our entire addressBook directly will print out our contacts exactly as they are stored in our data array. There are two key things you need to fix:  
+              - [ ] Change the columns so that they read "CONTACT_NAME" and "PHONE_NUMBER"
+              <details>
+              <summary>Hint</summary>
+              [Use columnify's headingTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
+              </details>
+              - [ ] For contacts without phone numbers, display '-None-' instead of '-1'
               <details>
               <summary>Hint</summary>
               Checkout [columnify's dataTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
