@@ -20,12 +20,12 @@ In this exercise we will build a command line tool in JavaScript and use NodeJS 
 **Arguments** We can pass strings or numbers into our program to be used as arguments or parameters.
 `node myProgram.js square 4` contains the arguments `square` and `4` but we think of `square` as a command and `4` as the argument or parameter for that specific command.
 
-
+- - - -
 
 ## Introduction - The Address Book
 Our Address Book data is stored in the file called data.json. The address book is an array objects. Each object represents a Contact and has two properties:
- 1. name: a string (letters only!), first name of the contact
- 2. number: a number (numbers only!), phone number of contact
+ 1. **name**: a string (letters only!), first name of the contact
+ 2. **number**: a number (numbers only!), phone number of contact
 
  <!-- 3. email: an email, email of contact -->
 
@@ -75,8 +75,9 @@ Our command line Address Book manager should support the following commands:
     - `$ node addressBook.js delete John` - Finds contact named John and removes him from address book
 
 
-Let's get started!
+Let's get started!  
 
+- - - -
 
 ## Part 1: Parsing Command Line Arguments
 
@@ -94,6 +95,7 @@ The command will be the first argument: <br>
 
 > **Note:** If you need a refresher on what `process.argv` is, see [here](https://www.google.com)
 
+- - - -  
 
 ## Part 2: Implementing the 'display' command
 Write the function displayContacts(). It will be called in the following way:  
@@ -168,15 +170,16 @@ Contacts that do not have a phone number (for which we put -1 as the placeholder
 
 > **TEST:** Run your tests with `$ npm test`!  
 
+- - - -  
 
 ## Part 3: Implementing the 'add' command
 Write the function addContact(). It will be called in the following ways:  
-- With name and number:`$ node addressBook.js add Darwish 123`  
-- With name: `$ node addressBook.js add Darwish`
+`$ node addressBook.js add Darwish 123`  - add a contact named Darwish with phone number 123  
+`$ node addressBook.js add Darwish` - adds a contact named Darwish with no phone number (-1 as placeholder)
 
 
 The add command will create a new contact with the specified name and number and save it into our data file.
-> **Tip** We already handle writing to the data file for you, so all you need to do is add each new contact to our data array
+> **Note** We already handle writing to the data file for you, so all you need to do is add each new contact to our data array
 
 
 addContact() is the function that is called to create a new contact. Calling `$ node addressBook.js add contactName contactNumber ` must call our function addContact.
@@ -188,13 +191,14 @@ In order to pass all the tests, you will need to validate what was passed in for
 - Every contact is an object with the following properties:
     1. **name**: REQUIRED a string (letters only!), first name of the contact
     2. **number**: OPTIONAL a number (numbers only!), phone number of contact
-- *Important* There can be no duplicate names! When testing, make each name unique
-- You should only create a new contact if a name is provided
+- *Important* There can be **no** duplicate names! If the user tries to add a contact whose name already exists, console.log() '[ContactName] already in Address Book'
+- You should **only** create a new contact if a name is provided
     - if no number is provided, store -1 as their number instead
 - console.log() your success/failure messages:
- - When you add a new contact, console.log() a success message such as:  
-`"Added contact Darwish"`
- - If either there was no name provided, the name was invalid, or the number was invalid, do not add any contacts, console.log() a failure message like:  `Invalid contact format`
+  - When you add a new contact, console.log() a success message such as:  
+  `"Added contact Darwish"`
+   - If either there was no name provided, the name was invalid, or the number was invalid, do not add any contacts, console.log() a failure message like:  
+   `Invalid contact format`
 
 
 
@@ -202,8 +206,13 @@ In order to pass all the tests, you will need to validate what was passed in for
 
 > **TEST:** Run your tests with `$ npm test`! 
 
+- - - -  
+
 ## Part 4: Implementing the 'update' command
 The update command is called to update an existing contact. You can update either a contact's name or number by running the following in your terminal:
+  - `$ node addressBook.js update John 11111` - Finds contact named John and updates his number to 11111
+  - `$ node addressBook.js update John Johnny` - Finds contact named John and updates his name to Johnny
+  - `$ node addressBook.js update nonExistantContact` - Logs to console `No contact found`
 
 **Rules**
 - If a contact with the specified name does not exist, console.log() `No contact found`
@@ -212,17 +221,16 @@ The update command is called to update an existing contact. You can update eithe
 
 > **TEST:** Run your tests with `$ npm test`! 
 
+- - - -  
 
 
 ## BONUS Part 5: Implementing the 'delete' command
-### Goal
+Write the function deleteContact() so that it removes the specified contact from our data.json file. The delete command will be run in the following ways: 
+  - `$ node addressBook.js delete John` - Finds contact named John and deletes him
+  - `$ node addressBook.js delete nonExistantContact` - Logs to console `No contact found`
 
-
-### Flags
-
-**Flags** are boolean values that are set by being included when calling the program.
-`node myProgram.js --cookies` is calling `myProgram.js` with the flag `cookies
-= true` and the flag `milk = false` because it is not present.
-
-Flags normally have shortened versions, so `--cookies` is equivalent to `-c`.
-`node myProgram.js -c`
+<!-- ## BONUS Add the lastname property
+Currently you are only able to identify a contact by their *first name*. That means that you cannot have two contacts with the same name value or else your 'update' command will not work properly. To fix this, lets do the  add a lastname property to our Contact objects and have our 'update' command take both the first and last name:  
+  - `$ node addressBook.js update John Smith 11111` - Finds contact named John Smith and updates his number to 11111
+  - `$ node addressBook.js update John Smith Johnny` - Finds contact named John and updates his name to Johnny
+  --!>
