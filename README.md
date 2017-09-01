@@ -79,9 +79,9 @@ Our command line Address Book manager should support the following commands:
 
 Let's get started!
 
-<br>
-<br>
+
 ## Part 1: Parsing Command Line Arguments
+
 **Commands** are arguments that specify specific actions. You can run:
 `node myProgram.js doSomething`. `doSomething` is not a flag, since it doesn't begin with `--` - it is an argument or sub-command for the `node myProgram.js` command line tool. Consider if `myProgram.js` was a calculator application; then `node myProgram.js add` contains the command `add` and `node myProgram.js delete` contains the command `delete`. Commands given to a program are just special arguments that modify the behavior of the app/tool we are running.
 
@@ -99,18 +99,17 @@ The command will be the first argument: <br>
 
 
 ## Part 2: Implementing the 'display' command
-Write the function displayContacts(). It will be called in the following ways:<br>
-`$ node addressBook.js display` <br>
-`$ node addressBook.js display ContactName`<br>
-`$ node addressBook.js display ContactNumber`<br>
+Write the function displayContacts(). It will be called in the following way:
+`$ node addressBook.js display` 
+
 
 This function should output the appropriate contacts using console.log() and [columnify npm package](https://www.npmjs.com/package/columnify). <br> Contacts that do not have a phone number (for which we put -1 as the placeholder), should be displayed with '-None-' in place of their number, as follows: <br>
 NAME: ContactName PHONE NUMBER: -None-
 ### Goal
 ![](./img/displaycontactsresult.png)
 
-#### Using columnify
-Columnify is an npm package that formats console output from objects or arrays of objects into organized columns.
+### Using columnify
+[Columnify](https://www.npmjs.com/package/columnify) is an npm package that formats console output from objects or arrays of objects into organized columns. We will use it to display the contacts in our address book like the image above.
 
 ##### Steps
 1. `npm install --save columnify`
@@ -123,6 +122,23 @@ Columnify is an npm package that formats console output from objects or arrays o
     <img src="./img/terminalcolumns.png" width="400">
     </details>
 1. Explore the columnify module to match your output to the 'Goal' shown above
+ - **NOTE**: Simply calling columnify on our entire addressBook directly will print out our contacts exactly as they are stored in our data array. There are two key things you need to fix:
+  - Change the columns so that they read "CONTACT_NAME" and "PHONE_NUMBER"
+  ```i```:
+     <details>
+     <summary>Hint</summary>
+     [Use columnify's headingTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
+     </details>
+  - For contacts without phone numbers, display '-None-' instead of '-1'
+  ```i```:
+      <details>
+      <summary>Hint</summary>
+      Checkout [columnify's dataTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
+          <details>
+          <summary>Super Hint</summary>
+          ![](./img/datatransformhint.png)
+          </details>
+      </details>
 
 
 
@@ -132,6 +148,7 @@ Columnify is an npm package that formats console output from objects or arrays o
 <summary>Hint</summary>
 [Use columnify's headingTransform option](https://github.com/timoxley/columnify#transforming-column-data-and-headers)
 </details>
+
  - For contacts without phone numbers, display '-None-' instead of '-1'
 <details>
 <summary>Hint</summary>
@@ -145,14 +162,13 @@ Checkout [columnify's dataTransform option](https://github.com/timoxley/columnif
      
 
 
-> **Test:** Run your tests!
+> **Test:** Run your tests!  
 
-<br>
-<br>
+
 ## Part 3: Implementing the 'add' command
-Write the function addContact(). It will be called in the following ways:<br>
-`$ node addressBook.js add Darwish 123` <br>
-`$ node addressBook.js add Darwish`<br>
+Write the function addContact(). It will be called in the following ways:  
+- With name and number:`$ node addressBook.js add Darwish 123`
+- With name: `$ node addressBook.js add Darwish`
 
 
 The add command will create a new contact with the specified name and number and save it into our data file.
@@ -172,9 +188,9 @@ In order to pass all the tests, you will need to validate what was passed in for
 - You should only create a new contact if a name is provided
     - if no number is provided, store -1 as their number instead
 - console.log() your success/failure messages:
- - When you add a new contact, console.log() a success message such as:<br>
+ - When you add a new contact, console.log() a success message such as:  
 `"Added contact Darwish"`
- - If either there was no name provided, the name was invalid, or the number was invalid, do not add any contacts, console.log() a failure message like <br>`Invalid contact format`
+ - If either there was no name provided, the name was invalid, or the number was invalid, do not add any contacts, console.log() a failure message like:  `Invalid contact format`
 
 
 
