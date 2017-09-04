@@ -73,7 +73,7 @@ Let's get started!
 
 ## Part 1: Parsing Command Line Arguments
 
-**Commands** are arguments that specify specific actions. 
+**Commands** are arguments that specify specific actions.
 
 #### Implement parseCommand()
 In order to for our application to determine which action/command to perform, you parse the specified command from the command line arguments.
@@ -91,7 +91,7 @@ The command will be the first argument: <br>
 
 ## Part 2: Implementing the 'display' command
 Write the function displayContacts(). It will be called in the following way:  
-`$ node addressBook.js display` 
+`$ node addressBook.js display`
 
 ### Goal
 This function should output the appropriate contacts using console.log() and [columnify npm package](https://www.npmjs.com/package/columnify).  
@@ -128,7 +128,7 @@ Contacts that do not have a phone number (for which we put -1 as the placeholder
                   ![](./img/datatransformhint.png)
                   </details>
               </details>
-     
+
 
 
 > **TEST:** Run your tests with `$ npm test`!  
@@ -167,7 +167,7 @@ In order to pass all the tests, you will need to validate what was passed in for
 
 **Bonus** Use the npm package [validate](https://www.npmjs.com/package/validator) to perform these checks
 
-> **TEST:** Run your tests with `$ npm test`! 
+> **TEST:** Run your tests with `$ npm test`!
 
 - - - -  
 
@@ -182,13 +182,13 @@ The update command is called to update an existing contact. You can update eithe
 - If contact is successfully updated, console.log() the updated contact like this: `Darwish 123`
 - ONLY update the contact if the new name or number is valid! (Just like how you checked for validity in addContacts())
 
-> **TEST:** Run your tests with `$ npm test`! 
+> **TEST:** Run your tests with `$ npm test`!
 
 - - - -  
 
 
 ## BONUS Part 5: Implementing the 'delete' command
-Write the function deleteContact() so that it removes the specified contact from our data.json file. The delete command will be run in the following ways: 
+Write the function deleteContact() so that it removes the specified contact from our data.json file. The delete command will be run in the following ways:
   - `$ node addressBook.js delete John` - Finds contact named John and deletes him
   - `$ node addressBook.js delete nonExistantContact` - Logs to console `No contact found`
 
