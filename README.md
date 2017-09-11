@@ -1,4 +1,3 @@
-
 # Pair Programming Exercise: Address Book using Command Line Arguments
 
 ## Goal
